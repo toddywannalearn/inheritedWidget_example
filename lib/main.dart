@@ -24,6 +24,16 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  void changeLoading(bool value) {
+    setState(() {
+      _isLoading = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,8 +43,8 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       home: ThemeInherited(
-          child: const MyHomePage(title: 'Flutter Demo Home Page'),
-          themeMode: themeMode),
+          themeMode: themeMode,
+          child: const MyHomePage(title: 'Flutter Demo Home Page')),
     );
   }
 }

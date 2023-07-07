@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inherited_playground/pages/counter_page.dart';
 
 import '../main.dart';
+import 'buttons_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -8,22 +10,15 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class MyHomePageState extends State<MyHomePage> {
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print('dependencies changed');
+    print('HOME_PAGE dependencies changed');
   }
 
   @override
@@ -61,23 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              //style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return CounterPage();
+              }));
+            }, child: const Text('Counter Example')),
+            const SizedBox(height: 12,),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return ButtonsPage();
+              }));
+            }, child: const Text('Shimmer Example')),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (_incrementCounter),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
